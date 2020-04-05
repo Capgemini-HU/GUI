@@ -3,7 +3,8 @@ Voor dit project is er onderzoek gedaan naar welk framework voor een grafische i
 Eerst was het plan om Kivy te gebruiken maar dat is uiteindelijk niet gedaan omdat het daar lastig was om een nieuw venster te openen.
 Hierdoor is er besloten om naar twee andere frameworks te kijken, Tkinter en Qt.
 In deze feature branch is Tkinter verwerkt.
-#Tkinter
+
+# Tkinter
 Om dit project te starten moet je Calendar.py runnen en niet MainWindow.py, andersom lukte het niet om het werkend te krijgen.
 Tkinter heeft geen datepicker beschikbaar daarom is er een calendar door iemand zelf gemaakt hier in verwerkt, deze heeft alleen helaas geen mogelijkheid om een tijd te kiezen.
 
