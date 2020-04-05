@@ -6,6 +6,7 @@ In deze feature branch is PyQt verwerkt.
 
 
 #PyQt
+
 Om PyQt5 op Pycharm te gebruiken moeten de volgende stappen gedaan worden.
 1) Open CMD en voer de volgende commando's uit om PyQt5 te installeren
 2) pip install pyqt5
