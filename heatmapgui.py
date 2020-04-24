@@ -1,16 +1,10 @@
- # -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'heatmapGui.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QObject, pyqtSignal
+import sys
+import PictureWindow
 
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(QtWidgets.QMainWindow):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(802, 589)
@@ -80,7 +74,7 @@ class Ui_MainWindow(object):
         self.ruimte_foto = QtWidgets.QLabel(self.centralwidget)
         self.ruimte_foto.setGeometry(QtCore.QRect(10, 100, 781, 451))
         self.ruimte_foto.setText("")
-        self.ruimte_foto.setPixmap(QtGui.QPixmap("placeholder.png"))
+        self.ruimte_foto.setPixmap(QtGui.QPixmap("Placeholder.png"))
         self.ruimte_foto.setScaledContents(True)
         self.ruimte_foto.setObjectName("ruimte_foto")
         self.submit = QtWidgets.QPushButton(self.centralwidget)
@@ -104,6 +98,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         self.submit.clicked.connect(self.submitPressed)
+        self.dialogs = list()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -122,19 +117,26 @@ class Ui_MainWindow(object):
 
     def submitPressed(self):
         selected_room = self.ruimte.currentText()
-        if selected_room == "Huiskamer":
-            self.ruimte_foto.setPixmap(QtGui.QPixmap("huiskamer.jpg"))
-        elif selected_room == "Slaapkamer":
-            self.ruimte_foto.setPixmap(QtGui.QPixmap("slaapkamer.jpg"))
-        elif selected_room == "Badkamer":
-            self.ruimte_foto.setPixmap(QtGui.QPixmap("Badkamer.jpg"))
+
+        if self.new_window.isChecked():
+            self.newWindow()
+        else:
+            self.ruimte_foto.setPixmap(QtGui.QPixmap(selected_room + ".png"))
+
+    def newWindow(self):
+        dialog = PictureWindow.PictureWindow(self)
+        self.dialogs.append(dialog)
+        dialog.show()
 
 
-if __name__ == "__main__":
-    import sys
+def main():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
